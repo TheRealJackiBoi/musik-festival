@@ -1,8 +1,8 @@
 import './App.css';
 import React, {Component} from 'react';
-import {Chat} from './Chat';
-import {Video} from './Video';
-
+import {Chat} from './components/Chat';
+import {VideoPlayer} from './components/VideoPlayer';
+import {Voting} from './components/Voting';
 
 
 export class App extends React.Component {    
@@ -10,8 +10,9 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Video />
+        <VideoPlayer />
         <Chat />
+        <Voting />
       </div>
     );
   }
