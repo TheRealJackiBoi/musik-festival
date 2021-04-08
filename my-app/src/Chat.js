@@ -4,24 +4,50 @@ import React, {Component, useState, useEffect} from 'react';
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:8000/";
 
-export function Chat() {
+const socket = socketIOClient("http://localhost:8000");
 
+
+
+export function Chat() {
+    
     let number = 0
 
-    const [response, setResponse] = useState("");
+    //let {chat} = useState(0);
 
+    const [response, setResponse] = useState([]);
     useEffect(() => {
-     const socket = socketIOClient("http://localhost:8000");
-      socket.on("Update", data => {
-       //setResponse(data);
-       console.log(data);
-      });
-    }, []);
+        
+        socket.on("NewMessage", data => {
+            setResponse(response => response.concat(data));
+       });
+        
+      
+   }, []);
 
     
         return(
-            <div>
-            <h1>{number}</h1>
+            <div id="chat">
+                {response.map((msg) => 
+                    <div>
+                        <h2>{msg.sender}</h2>
+                        <p>{msg.message}</p>
+                    </div>
+                    )}
+                
+                <input id="text" placeholder="Chat here...">
+                </input>
+
+                <button onClick={() => {
+                    const textBox = document.getElementById('text');
+                    const newMessage = {sender: "user", message: textBox.value}
+                    textBox.value = "";
+                    socket.emit("addMessage", newMessage);
+                    setResponse(response => response.concat(newMessage));
+               
+               }}>Send</button>
+
+                    
+              
             </div>
         );
 }

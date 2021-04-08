@@ -19,7 +19,6 @@ const io = socketIo(server, {
 });
 
 
-let counter = 123;
 
 app.get('/', function(request, response) {
     response.send(counter.toString());
@@ -29,13 +28,20 @@ app.get('/', function(request, response) {
 io.on("connection", (socket) => {
 
     console.log("New client connected");
-
-    counter++;
-    socket.emit("Update", counter.toString());
+    socket.emit("NewMessage", {sender: "Bob", message: "Hello this is chat"});
+    socket.emit("NewMessage", {sender: "Svend21", message: "Hello chat this is svend"});
     
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     });
+
+    socket.on("addMessage", (data) => {
+       socket.broadcast.emit("NewMessage", data);
+    });
+
+    socket.on("Test", (data) => {
+        console.log(data);
+    })
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
