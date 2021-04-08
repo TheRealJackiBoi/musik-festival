@@ -6,8 +6,6 @@ import {Video} from './Video';
 
 
 export class App extends React.Component {    
-  hej
-  
 
   render() {
     return (
