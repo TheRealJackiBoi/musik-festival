@@ -1,14 +1,19 @@
 import React, {Component, useState, useEffect} from 'react';
 
+import {Login} from './Login';
+
 
 import socketIOClient from "socket.io-client";
+import firebase from '../firebase.js'
+
+
 const ENDPOINT = "http://localhost:8000/";
 
 const socket = socketIOClient("http://localhost:8000");
 
 
 
-export function Chat() {
+export function Chat(props) {
     
     let number = 0
 
@@ -21,11 +26,13 @@ export function Chat() {
         });
    }, []);
 
+
+
         return(
             <div id="chat">
                 <div id="chat-messages">
                 {response.map((msg) => 
-                    <div >
+                    <div className={(props.user ? (props.user.displayName == msg.sender ? "user-message" : "incoming-message") : "incoming-message")}>
                         <h2>{msg.sender}</h2>
                         <p>{msg.message}</p>
                     </div>
@@ -33,12 +40,17 @@ export function Chat() {
                 </div>
                 <div id="chat-input">
 
-                <input id="text" placeholder="Chat here...">
-                </input>
+                {
+                    props.user ? 
+                    <input id="text" placeholder="Chat here..." autocomplete="off">
+                    </input>
+                    :
+                    <Login auth={props.auth} user={props.user}/>
+                }
 
                 <button id="send" onClick={() => {
                     const textBox = document.getElementById('text');
-                    const newMessage = {sender: "user", message: textBox.value}
+                    const newMessage = {sender: props.user.displayName, message: textBox.value}
                     textBox.value = "";
                     socket.emit("addMessage", newMessage);
                     setResponse(response => response.concat(newMessage));
@@ -49,3 +61,5 @@ export function Chat() {
             </div>
         );
 }
+
+  
