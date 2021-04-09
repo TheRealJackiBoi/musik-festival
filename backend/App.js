@@ -38,10 +38,6 @@ io.on("connection", (socket) => {
     socket.on("addMessage", (data) => {
        socket.broadcast.emit("NewMessage", data);
     });
-
-    socket.on("Test", (data) => {
-        console.log(data);
-    })
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
