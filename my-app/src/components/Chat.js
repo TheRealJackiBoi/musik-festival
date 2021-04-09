@@ -27,13 +27,16 @@ export function Chat() {
     
         return(
             <div id="chat">
+                <div id="chat-messages">
                 {response.map((msg) => 
-                    <div>
+                    <div >
                         <h2>{msg.sender}</h2>
                         <p>{msg.message}</p>
                     </div>
                     )}
-                
+                </div>
+                <div id="chat-input">
+
                 <input id="text" placeholder="Chat here...">
                 </input>
 
@@ -43,9 +46,8 @@ export function Chat() {
                     textBox.value = "";
                     socket.emit("addMessage", newMessage);
                     setResponse(response => response.concat(newMessage));
-               
                }}>Send</button>
-
+            </div>
                     
               
             </div>

@@ -10,6 +10,11 @@ export function Voting() {
             {buttons.map(button => {
                 <button>{button.videoName}</button>
             })}
+
+            <button>Hej</button>
+            <button>Hej</button>
+            <button>Hej</button>
+            <button>Hej</button>
         </div>
     )
 }

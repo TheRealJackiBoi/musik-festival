@@ -1,38 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body, html{
+  font-family:'Open Sans';
+}
 .App {
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 8fr 2fr;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#video-vote {
+  display: grid;
+  grid-template-rows: 8fr 2fr;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#voting {
+  background-color: lightgray;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap:4rem;
+  padding:2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#voting button{
+  border-radius:1rem;
 }
 
-.App-link {
-  color: #61dafb;
+#video-player{
+  background:black;
+}
+#video-player div:first-of-type {
+  width:100%!important;
+  height: 100%!important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#chat {
+  display: grid;
+  grid-template-rows: 10fr 1fr;
+}
+#chat h2 {
+  font-size: 1rem;
+  color: #000E;
+
+  margin: 0;
+  padding: 0;
+}
+
+#chat p {
+  font-size: .6rem;
+  margin: 0;
+  padding: 0;
+}
+
+#chat-messages {
+  padding: 1rem;
+}
+
+#chat-input {
+  display: grid;
+  grid-template-columns: 8fr 2fr;
 }
