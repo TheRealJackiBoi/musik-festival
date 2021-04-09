@@ -16,15 +16,11 @@ export function Chat() {
 
     const [response, setResponse] = useState([]);
     useEffect(() => {
-        
         socket.on("NewMessage", data => {
             setResponse(response => response.concat(data));
-       });
-        
-      
+        });
    }, []);
 
-    
         return(
             <div id="chat">
                 <div id="chat-messages">
@@ -40,7 +36,7 @@ export function Chat() {
                 <input id="text" placeholder="Chat here...">
                 </input>
 
-                <button onClick={() => {
+                <button id="send" onClick={() => {
                     const textBox = document.getElementById('text');
                     const newMessage = {sender: "user", message: textBox.value}
                     textBox.value = "";
