@@ -32,7 +32,7 @@ export function Chat(props) {
             <div id="chat">
                 <div id="chat-messages">
                 {response.map((msg) => 
-                    <div className={(props.user ? (props.user.displayName == msg.sender ? "user-message" : "incoming-message") : "incoming-message")}>
+                    <div className={props.user && props.user.displayName === msg.sender ? "user-message" : "incomeing-message" }>
                         <h2>{msg.sender}</h2>
                         <p>{msg.message}</p>
                     </div>
