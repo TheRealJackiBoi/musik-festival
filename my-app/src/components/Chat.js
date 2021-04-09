@@ -7,9 +7,9 @@ import socketIOClient from "socket.io-client";
 import firebase from '../firebase.js'
 
 
-const ENDPOINT = "http://localhost:8000/";
+const ENDPOINT = "https://musik-festival-backend-2dqkf.ondigitalocean.app:8080";
 
-const socket = socketIOClient("http://localhost:8000");
+const socket = socketIOClient("https://musik-festival-backend-2dqkf.ondigitalocean.app:8080");
 
 
 
@@ -42,7 +42,7 @@ export function Chat(props) {
 
                 {
                     props.user ? 
-                    <input id="text" placeholder="Chat here..." autocomplete="off">
+                    <input id="text" placeholder="Chat here..." autoComplete="off">
                     </input>
                     :
                     <Login auth={props.auth} user={props.user}/>

@@ -10,7 +10,7 @@ export function VideoPlayer(video, handleVideoSelect) {
         <div id="video-player">
             <ReactPlayer
                 url={url}
-                playnig="true"
+                playing="true"
                 config={{
                     youtube: {
                       playerVars: { showinfo: 1, modestbranding: 1, controls: 0, autoplay:1, disablekb: 1, rel:0,}
